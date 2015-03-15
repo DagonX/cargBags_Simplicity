@@ -71,8 +71,8 @@ function MyContainer:OnCreate(name, settings)
         self:SetMovable(true)
         self:RegisterForClicks("LeftButton", "RightButton");
         self:SetScript("OnMouseDown", function()
-            self:ClearAllPoints() 
-            self:StartMoving() 
+            self:ClearAllPoints()
+            self:StartMoving()
         end)
         self:SetScript("OnMouseUp",  self.StopMovingOrSizing)
     end
@@ -129,4 +129,10 @@ function MyContainer:OnCreate(name, settings)
     -- Custom plugin of Simplicity, see FilterDropDown.lua
     -- Provides a dropdown of special filters modes
     self:SpawnPlugin("FilterDropDown"):SetPoint("BOTTOMLEFT", self, "TOPLEFT", 15, -8)
+
+    -- Plugin: DepositReagents
+    -- Provides a Button to deposit all Reagents in the Reagent Bank
+    if(settings.Bags == "reagentbank") then
+        self:SpawnPlugin("DepositReagents"):SetPoint("TOP", self, "BOTTOM", 0, 0)
+    end
 end

@@ -85,7 +85,7 @@ function Simplicity:OnInit()
 	-- Reagent frame
 	local bank = MyContainer:New("Reagents", {
             Movable = true,
-			Columns = 12,
+			Columns = 14,
 			Scale = 1,
 			Bags = "reagentbank",
 		})
