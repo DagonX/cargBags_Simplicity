@@ -47,6 +47,7 @@ function Simplicity:OnInit()
 	local onlyBags =		function(item) return item.bagID >= 0 and item.bagID <= 4 end
 	local onlyKeyring =		function(item) return item.bagID == -2 end
 	local onlyBank =		function(item) return item.bagID == -1 or item.bagID >= 5 and item.bagID <= 11 end
+	local onlyReagentBank =	function(item) return item.bagID == -3 end
 	local onlyRareEpics =	function(item) return item.quality and item.quality > 3 end
 	local onlyEpics =		function(item) return item.quality and item.quality > 3 end
 	local hideJunk =		function(item) return not item.quality or item.quality > 0 end
@@ -81,6 +82,18 @@ function Simplicity:OnInit()
 		bank:Hide() -- Hide at the beginning
 		self.bank = bank -- We need to toggle it later, so store it
 
+	-- Reagent frame
+	local bank = MyContainer:New("Reagents", {
+            Movable = true,
+			Columns = 12,
+			Scale = 1,
+			Bags = "reagentbank",
+		})
+		bank:SetFilter(onlyReagentBank, true) -- Take only items from the bank frame
+		bank:SetPoint("TOP", 0, -5) -- Place at left side of UI
+		bank:Hide() -- Hide at the beginning
+		self.reagentbank = bank -- We need to toggle it later, so store it
+
 	--[[
 		PRO TIP: Extended Filters
 			If you have a lot of categories, you may can avoid writing
@@ -114,9 +127,11 @@ function Simplicity:OnGroupState(group, state)
 		if(state) then
 			self:Open()
 			self.bank:Show()
+			self.reagentbank:Show()
 		else
 			self:Close()
 			self.bank:Hide()
+			self.reagentbank:Hide()
 		end
 	end
 end

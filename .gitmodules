@@ -1,3 +1,3 @@
 [submodule "cargBags"]
 	path = cargBags
-	url = git://github.com/xconstruct/cargBags.git
+	url = git://github.com/Gethe/cargBags.git
